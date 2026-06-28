@@ -1,0 +1,18 @@
+{
+    "name": "karima/le-pacte-de-gray",
+    "autoload": {
+        "psr-4": {
+            "Karima\\LePacteDeGray\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Rika600",
+            "email": "karima740@icloud.com"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "^7.1",
+        "mongodb/mongodb": "^2.3"
+    }
+}
