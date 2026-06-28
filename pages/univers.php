@@ -15,19 +15,57 @@ $lieux = $lieuService->getLieux();
 <div class="container my-5">
     <h1 class="text-center mb-5">L'Univers</h1>
 
-    <!-- Section Personnages -->
-    <h2 class="mb-4">Les Personnages</h2>
-    <div class="row">
+    <!-- Bouton toggle filtres -->
+    <div class="d-flex align-items-center mb-4">
+        <button id="btn-toggle-filtres" class="btn p-0 me-3" aria-label="Ouvrir les filtres">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+            </svg>
+        </button>
+        <h2 class="m-0">Personnages & Lieux</h2>
+    </div>
+
+    <!-- Panneau filtres -->
+    <div id="filtres-panel" class="mb-4" style="display: none;">
+        <div class="row g-3">
+            <div class="col-md-4">
+                <label for="filtre-type" class="form-label">Type</label>
+                <select id="filtre-type" class="form-select">
+                    <option value="">Tous</option>
+                    <option value="personnage">Personnages</option>
+                    <option value="lieu">Lieux</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="filtre-categorie" class="form-label">Catégorie</label>
+                <select id="filtre-categorie" class="form-select">
+                    <option value="">Toutes</option>
+                    <option value="1">Personnages principaux</option>
+                    <option value="2">Personnages secondaires</option>
+                    <option value="4">Lieux clés</option>
+                    <option value="5">Londres victorienne</option>
+                </select>
+            </div>
+        </div>
+        <div class="mt-3">
+            <button id="btn-filtrer" class="btn btn-dark px-4">Filtrer</button>
+            <button id="btn-reset" class="btn btn-outline-dark px-4 ms-2">Réinitialiser</button>
+        </div>
+    </div>
+
+    <!-- Grille des fiches -->
+    <div class="row" id="fiches-grid">
+
+        <!-- Personnages -->
         <?php foreach ($personnages as $p) : ?>
         <div class="col-md-4 mb-4">
             <div class="card h-100 border-0">
                 <img src="<?= BASE_URL ?>images/<?= htmlspecialchars($p->getImage()) ?>"
                      alt="<?= htmlspecialchars($p->getNom()) ?>"
-                     class="card-img-top personnage-image">
+                     class="card-img-top fiche-image">
                 <div class="card-body text-center">
                     <h3><?= htmlspecialchars($p->getPrenom()) ?> <?= htmlspecialchars($p->getNom()) ?></h3>
                     <p class="text-muted"><?= htmlspecialchars($p->getRang()) ?></p>
-                    <p><em><?= htmlspecialchars($p->getStatut()) ?></em></p>
                     <a href="<?= BASE_URL ?>pages/personnage.php?id=<?= $p->getPersonnageId() ?>" class="btn btn-dark btn-sm">
                         Découvrir
                     </a>
@@ -35,21 +73,17 @@ $lieux = $lieuService->getLieux();
             </div>
         </div>
         <?php endforeach; ?>
-    </div>
 
-    <!-- Section Lieux -->
-    <h2 class="mt-5 mb-4">Les Lieux</h2>
-    <div class="row">
+        <!-- Lieux -->
         <?php foreach ($lieux as $l) : ?>
-        <div class="col-md-6 mb-4">
+        <div class="col-md-4 mb-4">
             <div class="card h-100 border-0">
                 <img src="<?= BASE_URL ?>images/<?= htmlspecialchars($l->getImage()) ?>"
                      alt="<?= htmlspecialchars($l->getNom()) ?>"
-                     class="card-img-top lieu-image">
-                <div class="card-body">
+                     class="card-img-top fiche-image">
+                <div class="card-body text-center">
                     <h3><?= htmlspecialchars($l->getNom()) ?></h3>
-                    <p><?= htmlspecialchars($l->getVille()) ?>, <?= htmlspecialchars($l->getPays()) ?></p>
-                    <p><?= htmlspecialchars($l->getDescription()) ?></p>
+                    <p class="text-muted"><?= htmlspecialchars($l->getVille()) ?></p>
                     <a href="<?= BASE_URL ?>pages/lieu.php?id=<?= $l->getLieuId() ?>" class="btn btn-dark btn-sm">
                         Découvrir
                     </a>
@@ -57,7 +91,11 @@ $lieux = $lieuService->getLieux();
             </div>
         </div>
         <?php endforeach; ?>
+
     </div>
 </div>
+
+<script>var BASE_URL = '<?= BASE_URL ?>';</script>
+<script src="<?= BASE_URL ?>js/filtres.js"></script>
 
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>
