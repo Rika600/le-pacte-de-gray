@@ -66,59 +66,59 @@ $lieux = $lieuService->getLieux();
              class="img-fluid w-100">
     </div>
 
-    <!-- Grille des fiches cliquables -->
-    <div class="row" id="fiches-grid">
-
-        <?php foreach ($personnages as $p) : ?>
-        <div class="col-md-4 mb-4">
-            <div class="card h-100 border-0">
-                <img src="<?= BASE_URL ?>images/<?= htmlspecialchars($p->getImage()) ?>"
-                     alt="<?= htmlspecialchars($p->getNom()) ?>"
-                     class="card-img-top fiche-image">
-                <div class="card-body text-center">
-                    <h3><?= htmlspecialchars($p->getPrenom()) ?> <?= htmlspecialchars($p->getNom()) ?></h3>
-                    <p class="text-muted"><?= htmlspecialchars($p->getRang()) ?></p>
-                    <a href="<?= BASE_URL ?>pages/personnage.php?id=<?= $p->getPersonnageId() ?>" class="btn btn-dark btn-sm">
-                        Découvrir
-                    </a>
-                </div>
+    <!-- Grille personnages cliquables -->
+<div class="row" id="fiches-grid">
+    <?php foreach ($personnages as $p) : ?>
+    <div class="col-md-4 mb-4">
+        <div class="card border-0">
+            <img src="<?= BASE_URL ?>images/<?= htmlspecialchars($p->getImage()) ?>"
+                 alt="<?= htmlspecialchars($p->getNom()) ?>"
+                 class="card-img-top fiche-image">
+            <div class="card-body text-center">
+                <h3><?= htmlspecialchars($p->getPrenom()) ?> <?= htmlspecialchars($p->getNom()) ?></h3>
+                <p class="text-muted"><?= htmlspecialchars($p->getRang()) ?></p>
+                <a href="<?= BASE_URL ?>pages/personnage.php?id=<?= $p->getPersonnageId() ?>" class="btn btn-dark btn-sm">
+                    Découvrir
+                </a>
             </div>
         </div>
-        <?php endforeach; ?>
+    </div>
+    <?php endforeach; ?>
+</div>
 
-        <?php foreach ($lieux as $l) : ?>
-        <div class="col-md-6 mb-4">
-            <div class="card border-0">
-                <img src="<?= BASE_URL ?>images/<?= htmlspecialchars($l->getImage()) ?>"
-                     alt="<?= htmlspecialchars($l->getNom()) ?>"
-                     class="card-img-top fiche-image">
-                <div class="card-body text-center">
-                    <h3><?= htmlspecialchars($l->getNom()) ?></h3>
-                    <p class="text-muted"><?= htmlspecialchars($l->getVille()) ?></p>
-                    <a href="<?= BASE_URL ?>pages/lieu.php?id=<?= $l->getLieuId() ?>" class="btn btn-dark btn-sm">
-                        Découvrir
-                    </a>
-                </div>
+<!-- Planche personnages secondaires -->
+<div class="text-center mt-5 mb-5">
+    <img src="<?= BASE_URL ?>images/planche_secondaires.png" 
+         alt="Personnages secondaires" 
+         class="img-fluid w-100">
+</div>
+
+<!-- Grille lieux cliquables -->
+<div class="row">
+    <?php foreach ($lieux as $l) : ?>
+    <div class="col-md-6 mb-4">
+        <div class="card border-0">
+            <img src="<?= BASE_URL ?>images/<?= htmlspecialchars($l->getImage()) ?>"
+                 alt="<?= htmlspecialchars($l->getNom()) ?>"
+                 class="card-img-top fiche-image">
+            <div class="card-body text-center">
+                <h3><?= htmlspecialchars($l->getNom()) ?></h3>
+                <p class="text-muted"><?= htmlspecialchars($l->getVille()) ?></p>
+                <a href="<?= BASE_URL ?>pages/lieu.php?id=<?= $l->getLieuId() ?>" class="btn btn-dark btn-sm">
+                    Découvrir
+                </a>
             </div>
         </div>
-        <?php endforeach; ?>
-
     </div>
+    <?php endforeach; ?>
+</div>
 
-    <!-- Planche personnages secondaires -->
-    <div class="text-center mt-5 mb-5">
-        <img src="<?= BASE_URL ?>images/planche_secondaires.png" 
-             alt="Personnages secondaires" 
-             class="img-fluid w-100">
-    </div>
-
-    <!-- Planche des lieux -->
-    <div class="text-center mt-3 mb-5">
-        <img src="<?= BASE_URL ?>images/planche_lieux.png" 
-             alt="L'Univers de Dorian Gray - Les Lieux" 
-             class="img-fluid w-100">
-    </div>
-
+<!-- Planche des lieux -->
+<div class="text-center mt-3 mb-5">
+    <img src="<?= BASE_URL ?>images/planche_lieux.png" 
+         alt="L'Univers de Dorian Gray - Les Lieux" 
+         class="img-fluid w-100">
+</div>
 </div>
 
 <script>var BASE_URL = '<?= BASE_URL ?>';</script>
