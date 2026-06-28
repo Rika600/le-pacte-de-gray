@@ -53,3 +53,8 @@ footer {
 .text-muted {
     color: #C0C0C0 !important;
 }
+
+#btn-toggle-filtres svg {
+    fill: #F5F0E8;
+}
+
