@@ -7,7 +7,7 @@ require_once __DIR__ . '/../includes/header.php';
 
         <!-- Couverture -->
         <div class="col-md-4 text-center mb-4">
-            <img src="<?= BASE_URL ?>images/couverture.jpg"
+            <img src="<?= BASE_URL ?>images/couverture.png"
                  alt="Le Portrait de Dorian Gray"
                  class="img-fluid couverture-livre">
         </div>

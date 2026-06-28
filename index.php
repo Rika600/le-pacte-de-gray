@@ -28,7 +28,7 @@ $personnages = $personnageService->getPersonnages();
 
         <!-- Couverture du livre au centre -->
         <div class="col-md-4 text-center">
-            <img src="<?= BASE_URL ?>images/couverture.jpg" 
+            <img src="<?= BASE_URL ?>images/couverture2.png" 
                  alt="Le Portrait de Dorian Gray" 
                  class="img-fluid couverture-livre">
             <h1 class="mt-4">Le Pacte de Gray</h1>
