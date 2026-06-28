@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ .'/../Entity/Personnage';
+require_once __DIR__ .'/../Entity/Personnage.php';
 require_once __DIR__ . '/../Entity/Categorie.php';
 
 class PersonnageRepository
@@ -45,7 +45,7 @@ class PersonnageRepository
                 WHERE pl.personnage_id = :personnage_id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([':personnage_id'=> $personnageId]);
-        return $stmt->fetchAll(PDO::FETCH_CLASS, Lieu::class);
+        return $stmt->fetchAll(PDO::FETCH_CLASS, Personnage::class);
     }
 
     public function findByCategorie(int $categorieId): array

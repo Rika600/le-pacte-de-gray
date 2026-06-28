@@ -13,7 +13,7 @@ class LieuService
 
     public function getLieux(): array
     {
-        return $this->lieuRepository->findAll()
+        return $this->lieuRepository->findAll();
     }
 
     public function getLieuComplet (int $id): ?array
