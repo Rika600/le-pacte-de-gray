@@ -54,15 +54,30 @@ if (!isset($_SESSION['utilisateur_id'])) {
 }
 
 // Admin connecté
-$personnageService = new \PersonnageService($pdo);
-$articleService = new ArticleService($pdo);
-
 require_once __DIR__ . '/../src/Services/PersonnageService.php';
 require_once __DIR__ . '/../src/Services/ArticleService.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
+$personnageService = new PersonnageService($pdo);
+$articleService = new ArticleService($pdo);
 $personnages = $personnageService->getPersonnages();
 $articles = $articleService->getArticles();
+
+// MongoDB
+$client = new MongoDB\Client(MONGODB_URI);
+$db = $client->pacte_de_gray;
+$collection = $db->stats_fiches;
+$stats = $collection->find([], ['sort' => ['fiche_id' => 1]]);
+$stats = iterator_to_array($stats);
+
+$labels = [];
+$nbVues = [];
+foreach ($stats as $s) {
+    $labels[] = $s['nom'];
+    $nbVues[] = (int)$s['nb_vues'];
+}
 ?>
+
 
 <div class="container my-5">
     <h1 class="text-center mb-5">Espace Admin</h1>
@@ -82,6 +97,33 @@ $articles = $articleService->getArticles();
         <p><strong><?= htmlspecialchars($a->getTitre()) ?></strong> — <?= $a->getPublie() ? 'Publié' : 'Brouillon' ?></p>
     </div>
     <?php endforeach; ?>
-</div>
+
+    <!-- Graphique MongoDB -->
+        <h2 class="mt-5 mb-3">Statistiques des fiches</h2>
+        <canvas id="graphique-fiches" height="100"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var ctx = document.getElementById('graphique-fiches').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: <?= json_encode($labels) ?>,
+                datasets: [{
+                    label: 'Nombre de vues',
+                    data: <?= json_encode($nbVues) ?>,
+                    backgroundColor: ['#8B0000', '#6B1A1A', '#C0C0C0', '#8B0000', '#6B1A1A', '#C0C0C0', '#8B0000']
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: { y: { beginAtZero: true } }
+            }
+        });
+    </script>
+
+    <?php require_once __DIR__ . '/../includes/footer.php'; ?>
+    </div>
 
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>
