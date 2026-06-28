@@ -119,6 +119,17 @@ TRUE, 2),
 'Peintre talentueux et ami loyal de Dorian, il est l auteur du portrait maudit.',
 TRUE, 2);
 
+INSERT INTO personnage (nom, prenom, image, age, ville, pays, rang, statut, role, citation, description, actif, categorie_id) VALUES
+('Vane', 'Sibyl', 'sibyl.png', '17 ans', 'Londres', 'Angleterre', 'Actrice', 'Morte', 'protagoniste',
+'Je jouais des personnages fictifs, maintenant je veux vivre le vrai amour.',
+'Jeune actrice de théâtre, innocente et romantique, dont Dorian tombe amoureux.',
+TRUE, 1),
+
+('Vane', 'James', 'james.png', '20 ans', 'Londres', 'Angleterre', 'Marin', 'Mort', 'secondaire',
+'Je protégerai ma sœur jusqu\'à mon dernier souffle.',
+'Frère de Sibyl, marin au caractère droit et protecteur.',
+TRUE, 2);
+
 -- ==========================================================================
 -- Les lieux 
 -- ==========================================================================

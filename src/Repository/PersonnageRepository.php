@@ -18,7 +18,7 @@ class PersonnageRepository
                 FROM personnage p
                 JOIN  categorie c ON p.categorie_id = c.categorie_id
                 WHERE p.actif = TRUE
-                ORDER BY p.nom ASC";
+                ORDER BY p.personnage_id ASC";
         $stmt = $this->pdo->query($sql);
         return $stmt->fetchAll(PDO::FETCH_CLASS, Personnage::class);
     }
