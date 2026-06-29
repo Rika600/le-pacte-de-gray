@@ -15,60 +15,82 @@ document.addEventListener('DOMContentLoaded', function() {
         if (type) url += 'type=' + type + '&';
         if (categorie) url += 'categorie=' + categorie + '&';
 
-        fetch(url)
-            .then(function(response) { return response.json(); })
-            .then(function(fiches) {
-                var grille = document.getElementById('fiches-grid');
-                grille.textContent = '';
+      fetch(url)
+    .then(function(response) { return response.json(); })
+    .then(function(fiches) {
+        var grille = document.getElementById('fiches-grid');
+        grille.textContent = '';
+        var grillelieux = document.getElementById('lieux-grid');
+        if (grillelieux) grillelieux.textContent = '';
 
-                if (fiches.length === 0) {
-                    var p = document.createElement('p');
-                    p.className = 'text-center';
-                    p.textContent = 'Aucune fiche trouvée.';
-                    grille.appendChild(p);
+        // Cacher les cartes statiques PHP
+        document.querySelectorAll('#fiches-grid .col-md-4, #fiches-grid .col-md-6').forEach(function(el) {
+            el.style.display = 'none';
+        });
+        document.querySelectorAll('#lieux-grid .col-md-4, #lieux-grid .col-md-6').forEach(function(el) {
+            el.style.display = 'none';
+        });
+
+        if (fiches.length === 0) {
+            var p = document.createElement('p');
+            p.className = 'text-center';
+            p.textContent = 'Aucune fiche trouvée.';
+            grille.appendChild(p);
+        } else {
+            for (var i = 0; i < fiches.length; i++) {
+                var f = fiches[i];
+
+                var col = document.createElement('div');
+                col.className = f.type === 'personnage' ? 'col-md-4 mb-4' : 'col-md-6 mb-4';
+
+                var card = document.createElement('div');
+                card.className = 'card border-0';
+
+                var img = document.createElement('img');
+                img.src = BASE_URL + 'images/' + f.image;
+                img.alt = f.nom;
+                img.className = 'card-img-top fiche-image';
+                card.appendChild(img);
+
+                var body = document.createElement('div');
+                body.className = 'card-body text-center';
+
+                var titre = document.createElement('h3');
+                titre.textContent = f.prenom ? f.prenom + ' ' + f.nom : f.nom;
+                body.appendChild(titre);
+
+                var lien = document.createElement('a');
+                var id = f.type === 'personnage' ? f.personnage_id : f.lieu_id;
+                lien.href = BASE_URL + 'pages/' + f.type + '.php?id=' + id;
+                lien.className = 'btn btn-dark btn-sm mt-2';
+                lien.textContent = 'Découvrir';
+                body.appendChild(lien);
+
+                card.appendChild(body);
+                col.appendChild(card);
+
+                if (f.type === 'personnage') {
+                    grille.appendChild(col);
                 } else {
-                    for (var i = 0; i < fiches.length; i++) {
-                        var f = fiches[i];
-
-                        var col = document.createElement('div');
-                        col.className = 'col-md-4 mb-4';
-
-                        var card = document.createElement('div');
-                        card.className = 'card h-100 border-0';
-
-                        var img = document.createElement('img');
-                        img.src = BASE_URL + 'images/' + f.image;
-                        img.alt = f.nom;
-                        img.className = 'card-img-top fiche-image';
-                        card.appendChild(img);
-
-                        var body = document.createElement('div');
-                        body.className = 'card-body text-center';
-
-                        var titre = document.createElement('h3');
-                        titre.textContent = f.prenom ? f.prenom + ' ' + f.nom : f.nom;
-                        body.appendChild(titre);
-
-                        var lien = document.createElement('a');
-                        var id = f.type === 'personnage' ? f.personnage_id : f.lieu_id;
-                        lien.href = BASE_URL + 'pages/' + f.type + '.php?id=' + id;
-                        lien.className = 'btn btn-dark btn-sm mt-2';
-                        lien.textContent = 'Découvrir';
-                        body.appendChild(lien);
-
-                        card.appendChild(body);
-                        col.appendChild(card);
-                        grille.appendChild(col);
-                    }
+                    if (grillelieux) grillelieux.appendChild(col);
                 }
-            });
+            }
+        }
+    });
     });
 
     // Bouton reset
     document.getElementById('btn-reset').addEventListener('click', function() {
         document.getElementById('filtre-type').value = '';
         document.getElementById('filtre-categorie').value = '';
-        document.getElementById('btn-filtrer').click();
+        document.querySelectorAll('#fiches-grid .col-md-4, #fiches-grid .col-md-6').forEach(function(el) {
+        el.style.display = '';
+        });
+        document.querySelectorAll('#lieux-grid .col-md-4, #lieux-grid .col-md-6').forEach(function(el) {
+            el.style.display = '';
+        });
+        
     });
-
+// Charger toutes les fiches au démarrage
+document.getElementById('btn-filtrer').click();
 });

@@ -94,7 +94,7 @@ $lieux = $lieuService->getLieux();
 </div>
 
 <!-- Grille lieux cliquables -->
-<div class="row">
+<div class="row" id="lieux-grid">
     <?php foreach ($lieux as $l) : ?>
     <div class="col-md-6 mb-4">
         <div class="card border-0">
