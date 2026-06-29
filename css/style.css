@@ -89,3 +89,9 @@ footer {
     margin-right: auto;
     display: block;
 }
+
+.article-image {
+    width: 100%;
+    height: 500px;
+    object-fit: contain;
+}
