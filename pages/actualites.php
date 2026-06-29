@@ -25,7 +25,7 @@ $articles = $articleService->getArticles();
                     <?php endif; ?>
                     <div class="card-body">
                         <h3><?= htmlspecialchars($a->getTitre()) ?></h3>
-                        <p class="text-muted small"><?= htmlspecialchars($a->getCreatedAt()) ?></p>
+                        <p class="text-muted small"><?=date('d/m/Y', strtotime($a->getCreatedAt())) ?></p>
                         <p><?= htmlspecialchars(substr($a->getContenu(), 0, 150)) ?>...</p>
                         <a href="<?= BASE_URL ?>pages/article.php?id=<?= $a->getArticleId() ?>" class="btn btn-dark btn-sm">
                             Lire la suite
