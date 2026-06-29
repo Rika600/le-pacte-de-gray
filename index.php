@@ -27,10 +27,10 @@ $personnages = $personnageService->getPersonnages();
 </div>
 
 <!-- Ligne 2 : Henry + Livre + Basil -->
-<div class="row align-items-center justify-content-center mt-3">
+<div class="row align-items-center justify-content-end mt-3">
 
     <!-- Henry [1] -->
-    <div class="col-md-2 text-center">
+    <div class="col-md-3 text-center">
         <?php if (isset($personnages[1])) : $p = $personnages[1]; ?>
         <img src="<?= BASE_URL ?>images/<?= htmlspecialchars($p->getImage()) ?>" alt="<?= htmlspecialchars($p->getNom()) ?>" class="personnage-image img-fluid mb-3">
         <h4><?= htmlspecialchars($p->getPrenom()) ?> <?= htmlspecialchars($p->getNom()) ?></h4>
@@ -40,13 +40,12 @@ $personnages = $personnageService->getPersonnages();
 
     <!-- Couverture -->
     <div class="col-md-3 text-center">
-        <img src="<?= BASE_URL ?>images/couverture2.png" alt="Le Pacte de Gray" class="img-fluid couverture-livre">
-        <h1 class="mt-4">Le Pacte de Gray</h1>
-        <p class="text-muted">Oscar Wilde — 1890</p>
+    <img src="<?= BASE_URL ?>images/couverture2.png" alt="Le Pacte de Gray" class="img-fluid couverture-livre">
     </div>
 
+
     <!-- Basil [2] -->
-    <div class="col-md-2 text-center">
+    <div class="col-md-5 text-center">
         <?php if (isset($personnages[2])) : $p = $personnages[2]; ?>
         <img src="<?= BASE_URL ?>images/<?= htmlspecialchars($p->getImage()) ?>" alt="<?= htmlspecialchars($p->getNom()) ?>" class="personnage-image img-fluid mb-3">
         <h4><?= htmlspecialchars($p->getPrenom()) ?> <?= htmlspecialchars($p->getNom()) ?></h4>
@@ -54,6 +53,14 @@ $personnages = $personnageService->getPersonnages();
         <?php endif; ?>
     </div>
 </div>
+
+<!-- Titre centré -->
+    <div class="row justify-content-center mt-2">
+        <div class="col text-center">
+            <h1>Le Pacte de Gray</h1>
+            <p class="text-muted">Oscar Wilde — 1890</p>
+        </div>
+    </div>
 
 <!-- Ligne 3 : Sibyl + James -->
 <div class="row justify-content-center mt-4">
