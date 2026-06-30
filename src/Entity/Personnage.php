@@ -13,6 +13,7 @@ class Personnage {
     private string $role;
     private ?string $citation;
     private ?string $description;
+    private ?string $categorie_nom = null;
     private bool $actif;
     private int $categorie_id;
 
@@ -75,6 +76,11 @@ class Personnage {
   public function getDescription() : ?string
  {
     return $this->description;
+ }
+
+  public function getCategorieNom(): ?string
+ {
+     return $this->categorie_nom;
  }
 
   public function getActif() : bool

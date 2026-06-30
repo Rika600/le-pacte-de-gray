@@ -1,3 +1,4 @@
+SET NAMES utf8mb4;
 CREATE DATABASE IF NOT EXISTS pacte_de_gray
 CHARACTER SET utf8mb4
 COLLATE utf8mb4_unicode_ci;
@@ -98,7 +99,6 @@ INSERT INTO categorie (nom, type) VALUES
 ('Lieux clés', 'lieu'),
 ('Londre victorienne', 'lieu');
 
-
 -- ==========================================================================
 -- Les personnages de Dorian Gray
 -- ==========================================================================
@@ -126,7 +126,7 @@ INSERT INTO personnage (nom, prenom, image, age, ville, pays, rang, statut, role
 TRUE, 1),
 
 ('Vane', 'James', 'james.png', '20 ans', 'Londres', 'Angleterre', 'Marin', 'Mort', 'secondaire',
-'Je protégerai ma sœur jusqu\'à mon dernier souffle.',
+"Je protégerai ma sœur jusqu\'à mon dernier souffle.",
 'Frère de Sibyl, marin au caractère droit et protecteur.',
 TRUE, 2);
 
@@ -185,4 +185,8 @@ INSERT INTO article (titre, contenu, image, publie, utilisateur_id) VALUES
 'article1.jpg', 
 TRUE, 
 1);
+
+UPDATE personnage SET image = REPLACE(image, '.jpg', '.png');
+UPDATE lieu SET image = REPLACE(image, '.jpg', '.png');
+UPDATE article SET image = REPLACE(image, '.jpg', '.png');
 

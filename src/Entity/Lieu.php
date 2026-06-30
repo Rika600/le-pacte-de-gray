@@ -8,6 +8,7 @@ class Lieu
     private ?string $ville;
     private ?string $pays;
     private ?string $description;
+    private ?string $categorie_nom = null;
     private bool $actif;
     private int $categorie_id;
 
@@ -41,6 +42,11 @@ class Lieu
  {
     return $this->description;
  }
+
+   public function getCategorieNom(): ?string
+{
+    return $this->categorie_nom;
+}
 
   public function getActif() : bool
  {
