@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php if ($message_succes !== '') : ?>
         <div class="alert alert-success text-center">
             <?= htmlspecialchars($message_succes) ?>
-            <br><a href="<?= BASE_URL ?>espaces/admin.ph.php">Se connecter</a>
+            <br><a href="<?= BASE_URL ?>espaces/admin.php">Se connecter</a>
         </div>
     <?php endif; ?>
 
